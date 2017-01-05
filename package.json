@@ -1,0 +1,17 @@
+{
+  "name": "pushbullet-scheduler-web",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/guswnsxodlf/pushbullet-scheduler-web.git",
+  "author": "전현준 <guswnsxodlf@gmail.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.1.5",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "webpack": "^1.14.0"
+  }
+}
