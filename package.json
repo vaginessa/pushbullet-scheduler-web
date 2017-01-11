@@ -2,6 +2,10 @@
   "name": "pushbullet-scheduler-web",
   "version": "1.0.0",
   "main": "app.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev-server": "webpack-dev-server --content-base ./app/dist"
+  },
   "repository": "https://github.com/guswnsxodlf/pushbullet-scheduler-web.git",
   "author": "전현준 <guswnsxodlf@gmail.com>",
   "license": "UNLICENSED",
