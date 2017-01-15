@@ -2,33 +2,35 @@
  * Created by JHJ on 2017. 1. 11..
  */
 var path = require('path');
+var htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, '/app/src/routes.js'),
+    entry: path.join(__dirname, 'app/src/routes.js'),
     output: {
         filename: 'bundle.js',
         // publicPath: path.join(__dirname, '/app/dist'),
-        path: path.join(__dirname, '/app/dist')
+        path: path.join(__dirname, 'app/dist')
     },
     module: {
         exprContextCritical: false,
         rules: [
             {
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['latest', 'react']
                 },
-                test: /\.jsx?$/,
                 include: [
-                    path.join(__dirname, '/app/src')
+                    path.join(__dirname, 'app/src')
                 ],
             },
             {
-                test: /\.html$/,
+                test: /\.(jpe?g|png|gif|svg|ttf|woff|eot|woff2|html)$/,
                 loader: 'file-loader?name=[name].[ext]',
-                include: [
-                    path.join(__dirname, '/app/src')
-                ],
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
             }
         ]
     },

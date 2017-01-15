@@ -4,6 +4,7 @@
 'use strict';
 
 import "./index.html";
+import "semantic-ui-css/semantic.css"
 
 import React from 'react';
 import ReactDOM from 'react-dom';
