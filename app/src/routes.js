@@ -28,5 +28,5 @@ const App = React.createClass({
 });
 
 window.onload = () => {
-    ReactDOM.render(App, document.getElementById("root"));
+    ReactDOM.render(<App/>, document.getElementById("root"));
 };
