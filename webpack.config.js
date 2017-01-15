@@ -34,5 +34,11 @@ module.exports = {
             }
         ]
     },
-    devtool: "source-map"
+    devtool: "source-map",
+    plugins: [
+        new htmlWebpackPlugin({
+            title: 'Scheduler',
+            filename: path.join(__dirname, 'app/dist/index.html')
+        })
+    ]
 };
