@@ -2,15 +2,9 @@
  * Created by JHJ on 2017. 1. 11..
  */
 var path = require('path');
-var htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.join(__dirname, 'app/src/routes.js'),
-    output: {
-        filename: 'bundle.js',
-        // publicPath: path.join(__dirname, '/app/dist'),
-        path: path.join(__dirname, 'app/dist')
-    },
+    entry: path.join(__dirname, '../app/src/routes.js'),
     module: {
         exprContextCritical: false,
         rules: [
@@ -21,7 +15,7 @@ module.exports = {
                     presets: ['latest', 'react']
                 },
                 include: [
-                    path.join(__dirname, 'app/src')
+                    path.join(__dirname, '../app/src')
                 ],
             },
             {
@@ -35,10 +29,4 @@ module.exports = {
         ]
     },
     devtool: "source-map",
-    plugins: [
-        new htmlWebpackPlugin({
-            title: 'Scheduler',
-            filename: path.join(__dirname, 'app/dist/index.html')
-        })
-    ]
 };

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev-server": "webpack-dev-server --content-base ./app/dist"
+    "prod": "webpack --config webpack/webpack.config.prod.js",
+    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js"
   },
   "repository": "https://github.com/guswnsxodlf/pushbullet-scheduler-web.git",
   "author": "전현준 <guswnsxodlf@gmail.com>",
@@ -25,6 +25,7 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.26.0",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta",
