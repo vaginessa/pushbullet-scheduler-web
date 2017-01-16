@@ -4,16 +4,22 @@
 "use strict";
 
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 
 
 export default React.createClass({
     render(){
         return (
-            <Menu>
+            <Menu fixed='top' inverted={true}>
+                <Menu.Item header color='teal' active={true}>Scheduler</Menu.Item>
+                <Menu.Item>List</Menu.Item>
                 <Menu.Item>
-                    awef
+                    <Icon name="plus"/>
                 </Menu.Item>
+                <Menu.Menu position='right'>
+                    <Menu.Item>Profile</Menu.Item>
+                    <Menu.Item>Log out</Menu.Item>
+                </Menu.Menu>
             </Menu>
         );
     }
