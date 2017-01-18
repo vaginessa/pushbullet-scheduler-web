@@ -3,8 +3,10 @@
  */
 'use strict';
 
+// It should be removed when produce
 import "./index.html";
-import "semantic-ui-css/semantic.css"
+import "semantic-ui-css/semantic.css";
+import "./scss/main.scss";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
