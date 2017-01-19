@@ -3,24 +3,32 @@
  */
 "use strict";
 
-import React from 'react'
-import { Menu, Icon } from 'semantic-ui-react'
+import React from 'react';
+import { Menu, Icon, Container, Dropdown } from 'semantic-ui-react';
 
 
 export default React.createClass({
     render(){
         return (
-            <Menu fixed='top' inverted={true}>
-                <Menu.Item header color='teal' active={true}>Scheduler</Menu.Item>
-                <Menu.Item>List</Menu.Item>
-                <Menu.Item>
-                    <Icon name="plus"/>
-                </Menu.Item>
-                <Menu.Menu position='right'>
-                    <Menu.Item>Profile</Menu.Item>
-                    <Menu.Item>Log out</Menu.Item>
-                </Menu.Menu>
-            </Menu>
+            <div>
+                <Menu fixed='top' inverted={true}>
+                    <Container>
+                        <Menu.Item header color='teal' active={true} link={true}>Scheduler</Menu.Item>
+                        <Menu.Item link={true}>List</Menu.Item>
+                        <Menu.Item link={true} icon="plus"/>
+
+                        <Menu.Menu position='right'>
+                            <Dropdown as={Menu.Item} text='Login'>
+                                <Dropdown.Menu>
+                                    <Dropdown.Header>Text Size</Dropdown.Header>
+                                    <Dropdown.Item>Small</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Menu.Menu>
+                    </Container>
+                </Menu>
+                {this.props.children}
+            </div>
         );
     }
 });

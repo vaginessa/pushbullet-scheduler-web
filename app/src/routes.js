@@ -13,6 +13,8 @@ import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
 import Root from './containers/Root.js';
+import Home from './containers/Home.js';
+import List from './containers/List.js';
 
 
 const App = React.createClass({
@@ -20,7 +22,8 @@ const App = React.createClass({
         return (
             <Router history={hashHistory}>
                 <Route path="/" component={Root}>
-                    {/*<IndexRoute component={Home}/>*/}
+                    <IndexRoute component={Home}/>
+                    <Route path="list" component={List}/>
                     {/*<Route path="user" component={User}/>*/}
                     {/*<Route path="login" component={Login}/>*/}
                 </Route>
