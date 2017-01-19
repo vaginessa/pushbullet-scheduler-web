@@ -33,6 +33,7 @@ module.exports = {
                 test: /\.css$/,
                 use: [ 'style-loader', 'css-loader' ]
             },
+            // Should remove
             {
                 test: /\.html$/,
                 loader: 'html-loader'
