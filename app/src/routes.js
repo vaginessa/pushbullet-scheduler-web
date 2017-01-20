@@ -16,11 +16,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
 import reducers from './reducers';
-
-// Routes
-import Root from './containers/Root.js';
-import Home from './containers/Home.js';
-import List from './containers/List.js';
+import routers from './containers';
 
 
 const store = createStore(
@@ -31,15 +27,18 @@ const store = createStore(
 );
 
 const history = syncHistoryWithStore(hashHistory, store);
+// history.listen(location => {
+//     console.log(location);
+// });
 
 const App = React.createClass({
     render(){
         return (
             <Provider store={store}>
                 <Router history={history}>
-                    <Route path="/" component={Root}>
-                        <IndexRoute component={Home}/>
-                        <Route path="list" component={List}/>
+                    <Route path="/" component={routers.Root}>
+                        <IndexRoute component={routers.Home}/>
+                        <Route path="list" component={routers.List}/>
                         {/*<Route path="user" component={User}/>*/}
                         {/*<Route path="login" component={Login}/>*/}
                     </Route>
