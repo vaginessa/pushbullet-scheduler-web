@@ -3,11 +3,9 @@
  */
 "use strict";
 
-import { combineReducers } from 'redux';
-
 import currentRoute from './currentRoute.js';
 
 
-export default combineReducers({
+export default {
     currentRoute
-});
+};

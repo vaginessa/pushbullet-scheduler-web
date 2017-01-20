@@ -23,10 +23,12 @@ import Home from './containers/Home.js';
 import List from './containers/List.js';
 
 
-const store = createStore(combineReducers({
-    ...reducers,
-    routing: routerReducer
-}));
+const store = createStore(
+    combineReducers({
+        ...reducers,
+        routing: routerReducer
+    })
+);
 
 const history = syncHistoryWithStore(hashHistory, store);
 
