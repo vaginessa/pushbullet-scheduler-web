@@ -5,17 +5,23 @@
 
 import React from 'react';
 import { Menu, Icon, Container, Dropdown } from 'semantic-ui-react';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-
-export default React.createClass({
-    render(){
+const Root = React.createClass({
+    itemClick(e, { to }) {
+        this.props.dispatch(push(to));
+        console.log('1');
+    },
+    render() {
         return (
             <div>
                 <Menu fixed='top' inverted={true}>
                     <Container>
-                        <Menu.Item header color='teal' active={true} link={true}>Scheduler</Menu.Item>
-                        <Menu.Item link={true}>List</Menu.Item>
-                        <Menu.Item link={true} icon="plus"/>
+                        <Menu.Item header onClick={this.itemClick} to="/" color='teal' active={true} link={true}
+                                   name="Scheduler"/>
+                        <Menu.Item onClick={this.itemClick} to="/list" link={true} name="List"/>
+                        <Menu.Item onClick={this.itemClick} to="/" link={true} icon="plus"/>
 
                         <Menu.Menu position='right'>
                             <Dropdown as={Menu.Item} text='Login'>
@@ -33,3 +39,8 @@ export default React.createClass({
     }
 });
 
+const bindStore = (state) => {
+    return state;
+};
+
+export default connect(bindStore)(Root);

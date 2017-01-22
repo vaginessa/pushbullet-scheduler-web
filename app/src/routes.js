@@ -10,26 +10,29 @@ import "./scss/main.scss";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
+import createLogger from 'redux-logger';
 
 import reducers from './reducers';
 import routers from './containers';
 
 
+const rootReducer = combineReducers({
+    ...reducers,
+    routing: routerReducer
+});
+const middlewares = applyMiddleware(
+    routerMiddleware(browserHistory),
+);
 const store = createStore(
-    combineReducers({
-        ...reducers,
-        routing: routerReducer
-    })
+    rootReducer,
+    middlewares
 );
 
-const history = syncHistoryWithStore(hashHistory, store);
-// history.listen(location => {
-//     console.log(location);
-// });
+const history = syncHistoryWithStore(browserHistory, store);
 
 const App = React.createClass({
     render(){
