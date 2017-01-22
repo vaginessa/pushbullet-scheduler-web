@@ -33,4 +33,9 @@ module.exports = {
         ]
     },
     devtool: "source-map",
+
+    // To use browserHistory
+    devServer: {
+        historyApiFallback: true
+    }
 };
