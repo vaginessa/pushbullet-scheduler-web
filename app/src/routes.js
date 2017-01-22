@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
 });
 const middlewares = applyMiddleware(
     routerMiddleware(browserHistory),
+    createLogger()
 );
 const store = createStore(
     rootReducer,
