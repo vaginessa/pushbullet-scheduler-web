@@ -24,12 +24,13 @@ const Root = React.createClass({
                         <Menu.Item onClick={this.itemClick} to="/" link={true} icon="plus"/>
 
                         <Menu.Menu position='right'>
-                            <Dropdown as={Menu.Item} text='Login'>
-                                <Dropdown.Menu>
-                                    <Dropdown.Header>Text Size</Dropdown.Header>
-                                    <Dropdown.Item>Small</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            {/*<Dropdown as={Menu.Item} text='Login'>*/}
+                                {/*<Dropdown.Menu>*/}
+                                    {/*<Dropdown.Header>Text Size</Dropdown.Header>*/}
+                                    {/*<Dropdown.Item>Small</Dropdown.Item>*/}
+                                {/*</Dropdown.Menu>*/}
+                            {/*</Dropdown>*/}
+                            <Menu.Item onClick={this.itemClick} to="/login" link={true} name="Login"/>
                         </Menu.Menu>
                     </Container>
                 </Menu>

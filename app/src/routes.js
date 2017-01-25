@@ -43,6 +43,7 @@ const App = React.createClass({
                     <Route path="/" component={routers.Root}>
                         <IndexRoute component={routers.Home}/>
                         <Route path="list" component={routers.List}/>
+                        <Route path="login" component={routers.Login}/>
                         {/*<Route path="user" component={User}/>*/}
                         {/*<Route path="login" component={Login}/>*/}
                     </Route>
