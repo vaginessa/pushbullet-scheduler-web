@@ -3,8 +3,12 @@
  */
 "use strict";
 
+import 'es6-promise/auto';
+import fetch from 'isomorphic-fetch';
+
 // Action types
-export const SWITCH_ROUTE = 'SWITCH_ROUTE';
+export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
+export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
 
 
 // Constants
@@ -15,10 +19,24 @@ export const Routers = {
 
 
 // Actions creators
-
-export const switch_route = (route) => {
+export const requestAccessToken = () => {
     return {
-        type: SWITCH_ROUTE,
-        route
+        type: REQUEST_ACCESS_TOKEN,
+        id,
+        password
+    };
+};
+
+export const receiveAccessToken = () => {
+    return {
+        type: RECEIVE_ACCESS_TOKEN
+    };
+};
+
+export const fetchAccessToken = (id, password) => {
+    return (dispatch) => {
+        dispatch(requestAccessToken(id, password));
+
+        //TODO
     };
 };
