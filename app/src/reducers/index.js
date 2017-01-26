@@ -3,9 +3,9 @@
  */
 "use strict";
 
-import currentRoute from './currentRoute.js';
+import login from './login.js';
 
 
 export default {
-    currentRoute
+    login
 };

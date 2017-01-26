@@ -3,14 +3,25 @@
  */
 "use strict";
 
-import { Routers, SWITCH_ROUTE } from '../actions/index.js';
+import {
+    Routers,
+    REQUEST_ACCESS_TOKEN,
+    RECEIVE_ACCESS_TOKEN
+} from '../actions/index.js';
 
 
-export default (state = Routers.HOME, action) => {
+export default (state = {
+    isFetching: false
+}, action) => {
     switch(action.type){
-        case SWITCH_ROUTE:
-            return action.route;
+        case REQUEST_ACCESS_TOKEN:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case RECEIVE_ACCESS_TOKEN:
+            return Object.assign({}, state, {
 
+            });
         default:
             return state;
     }
