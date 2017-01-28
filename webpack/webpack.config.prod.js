@@ -4,6 +4,7 @@
 
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
     entry: path.join(__dirname, '../app/src/routes.js'),
@@ -49,6 +50,10 @@ module.exports = {
             template: path.join(__dirname, '../app/src/index.html'),
             inject: false,
             filename: path.join(__dirname, '../app/dist/index.html')
+        }),
+        new webpack.DefinePlugin({
+            DEVELOPMENT: false,
+            PRODUCTION: true
         })
     ],
     devtool: "source-map"

@@ -2,6 +2,7 @@
  * Created by JHJ on 2017. 1. 11..
  */
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
     entry: path.join(__dirname, '../app/src/routes.js'),
@@ -32,6 +33,13 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            DEVELOPMENT: true,
+            PRODUCTION: false
+        })
+    ],
+
     devtool: "source-map",
 
     // To use browserHistory
