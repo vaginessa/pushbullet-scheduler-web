@@ -2,12 +2,14 @@
  * Created by JHJ on 2017. 1. 28..
  */
 
-let data = {};
+const data = {};
+
+data.THEME = 'teal';
 
 if(DEVELOPMENT){
-    data.base_url = 'loacalhost:8000/';
+    data.BASE_URL = 'localhost:1234';
 }else if(PRODUCTION){
-    data.base_url = '';
+    data.BASE_URL = '';
 }
 
 export default data;
