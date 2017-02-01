@@ -11,15 +11,28 @@ import config from '../config';
 
 export default React.createClass({
     propTypes: {
-        theme: React.PropTypes.string
+        theme: React.PropTypes.string,
+        loginSubmitClick: React.PropTypes.func
     },
     getDefaultProps() {
         return {
             theme: config.THEME
         };
     },
+    getInitialState() {
+        return {
+            id: '',
+            password: '',
+        }
+    },
+    updateInputValue(name, e) {
+        this.setState(Object.assign(this.state, {
+            [name]: e.target.value
+        }));
+    },
     render(){
-        console.log(this.props.theme);
+        const { theme, loginSubmitClick } = this.props;
+        const { id, password } = this.state;
         return (
             <Grid.Column>
                 <Header as='h4' attached='top' inverted>
@@ -28,13 +41,17 @@ export default React.createClass({
                 <Segment attached>
                     <Form>
                         <Form.Field>
-                            <Input icon='user' iconPosition='left' placeholder='ID'/>
+                            <Input icon='user' iconPosition='left' placeholder='ID'
+                                   onChange={this.updateInputValue.bind(this, 'id')}/>
                         </Form.Field>
                         <Form.Field>
-                            <Input icon='lock' iconPosition='left' placeholder='Password'/>
+                            <Input icon='lock' iconPosition='left' placeholder='Password'
+                                   onChange={this.updateInputValue.bind(this, 'password')}/>
                         </Form.Field>
                         <Form.Field>
-                            <Button fluid={true} color={this.props.theme}>Submit</Button>
+                            <Button fluid={true} color={theme} onClick={() => { loginSubmitClick(id, password) }}>
+                                Submit
+                            </Button>
                         </Form.Field>
                     </Form>
                 </Segment>
