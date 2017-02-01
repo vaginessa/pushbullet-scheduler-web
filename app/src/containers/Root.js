@@ -4,14 +4,14 @@
 "use strict";
 
 import React from 'react';
-import { Menu, Icon, Container, Dropdown } from 'semantic-ui-react';
+import { Menu, Container } from 'semantic-ui-react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
 import config from '../config';
 
 
-const Root = React.createClass({
+export default connect()(React.createClass({
     itemClick(e, { to }) {
         this.props.dispatch(push(to));
     },
@@ -40,10 +40,4 @@ const Root = React.createClass({
             </div>
         );
     }
-});
-
-const bindStore = (state) => {
-    return state;
-};
-
-export default connect(bindStore)(Root);
+}));
