@@ -4,19 +4,29 @@
 "use strict";
 
 import React from 'react';
-import { Container, Grid, Segment, Header, Input, Form, Button} from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 import LoginPanel from '../components/LoginPanel.js';
+import { fetchAccessToken } from '../actions';
 
 
-export default React.createClass({
+const bindStore = (state) => {
+    return state;
+};
+
+export default connect(bindStore)(React.createClass({
+    loginSubmitClick(id, password){
+        console.log(id);
+        // this.props.dispatch(fetchAccessToken(id, password));
+    },
     render(){
         return (
             <Container>
                 <Grid centered columns={3} className="stackable">
-                    <LoginPanel/>
+                    <LoginPanel loginSubmitClick={this.loginSubmitClick}/>
                 </Grid>
             </Container>
         );
     }
-});
+}));
