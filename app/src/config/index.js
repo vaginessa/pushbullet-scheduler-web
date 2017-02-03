@@ -7,7 +7,7 @@ const data = {};
 data.THEME = 'teal';
 
 if(DEVELOPMENT){
-    data.BASE_URL = 'localhost:1234';
+    data.BASE_URL = 'http://localhost:1234';
 }else if(PRODUCTION){
     data.BASE_URL = '';
 }
