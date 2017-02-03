@@ -3,8 +3,13 @@
  */
 "use strict";
 
-import 'es6-promise/auto';
+import espromise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
+
+import config from '../config';
+
+
+espromise.polyfill();
 
 // Action types
 export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
