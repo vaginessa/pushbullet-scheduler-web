@@ -7,12 +7,17 @@ import React from 'react';
 import { Grid, Segment, Header, Input, Form, Button } from 'semantic-ui-react';
 
 import config from '../config';
+import LoginForm from './LoginForm';
 
 
 export default React.createClass({
     propTypes: {
         theme: React.PropTypes.string,
         loginSubmitClick: React.PropTypes.func
+    },
+    handleSubmit: (values) => {
+        // Do something with the form values
+        console.log(values);
     },
     getDefaultProps() {
         return {
@@ -39,21 +44,7 @@ export default React.createClass({
                     Login
                 </Header>
                 <Segment attached>
-                    <Form>
-                        <Form.Field>
-                            <Input icon='user' iconPosition='left' placeholder='ID'
-                                   onChange={this.updateInputValue.bind(this, 'id')}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <Input icon='lock' iconPosition='left' placeholder='Password'
-                                   onChange={this.updateInputValue.bind(this, 'password')}/>
-                        </Form.Field>
-                        <Form.Field>
-                            <Button fluid={true} color={theme} onClick={() => { loginSubmitClick(id, password) }}>
-                                Submit
-                            </Button>
-                        </Form.Field>
-                    </Form>
+                    <LoginForm onSubmit={this.handleSubmit}/>
                 </Segment>
             </Grid.Column>
         );
