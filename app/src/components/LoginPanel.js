@@ -13,38 +13,22 @@ import LoginForm from './LoginForm';
 export default React.createClass({
     propTypes: {
         theme: React.PropTypes.string,
-        loginSubmitClick: React.PropTypes.func
-    },
-    handleSubmit: (values) => {
-        // Do something with the form values
-        console.log(values);
+        loginSubmitClick: React.PropTypes.func.required
     },
     getDefaultProps() {
         return {
             theme: config.THEME
         };
     },
-    getInitialState() {
-        return {
-            id: '',
-            password: '',
-        }
-    },
-    updateInputValue(name, e) {
-        this.setState(Object.assign(this.state, {
-            [name]: e.target.value
-        }));
-    },
     render(){
         const { theme, loginSubmitClick } = this.props;
-        const { id, password } = this.state;
         return (
             <Grid.Column>
                 <Header as='h4' attached='top' inverted>
                     Login
                 </Header>
                 <Segment attached>
-                    <LoginForm onSubmit={this.handleSubmit}/>
+                    <LoginForm onSubmit={loginSubmitClick} theme={theme}/>
                 </Segment>
             </Grid.Column>
         );

@@ -11,19 +11,23 @@ import { Input, Form, Button } from 'semantic-ui-react';
 export default reduxForm({
     form: 'Login'
 })(React.createClass({
+    propTypes: {
+        theme: React.PropTypes.string
+    },
     render(){
-        const { handleSubmit } = this.props;
+        const { handleSubmit, theme } = this.props;
         return (
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
-                    <Field name="id" type="text" icon="user" iconPosition="left" placeholder="ID" component={Input}/>
-                </Form.Field>
-                <Form.Field>
-                    <Field name="password" type="text" icon="lock" iconPosition="left" placeholder="Password"
+                    <Field name="id" type="text" icon="user" iconPosition="left" placeholder="ID" required={true}
                            component={Input}/>
                 </Form.Field>
                 <Form.Field>
-                    <Button fluid={true} type="submit">
+                    <Field name="password" type="text" icon="lock" iconPosition="left" placeholder="Password"
+                           required={true} component={Input}/>
+                </Form.Field>
+                <Form.Field>
+                    <Button fluid={true} type="submit" color={theme}>
                         Submit
                     </Button>
                 </Form.Field>
