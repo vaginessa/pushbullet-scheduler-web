@@ -16,9 +16,8 @@ const bindStore = (state) => {
 };
 
 export default connect(bindStore)(React.createClass({
-    loginSubmitClick(id, password){
-        console.log(id);
-        // this.props.dispatch(fetchAccessToken(id, password));
+    loginSubmitClick(value){
+        this.props.dispatch(fetchAccessToken(value.id, value.password));
     },
     render(){
         return (
