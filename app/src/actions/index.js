@@ -24,11 +24,9 @@ export const Routers = {
 
 
 // Actions creators
-export const requestAccessToken = (id, password) => {
+export const requestAccessToken = () => {
     return {
-        type: REQUEST_ACCESS_TOKEN,
-        id,
-        password
+        type: REQUEST_ACCESS_TOKEN
     };
 };
 
@@ -41,15 +39,23 @@ export const receiveAccessToken = (token) => {
 
 export const fetchAccessToken = (id, password) => {
     return (dispatch) => {
-        dispatch(requestAccessToken(id, password));
-        const myInit = {
+        dispatch(requestAccessToken());
+        const request = new Request(config.BASE_URL + '/users/login', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify({
+                email: id,
+                password
+            })
+        });
+        return fetch(request).then((res) => {
+            if(res.status === 200){
+                res.json().then((data) => {
+                    console.log(data.token);
+                });
             }
-        };
-        return fetch(config.BASE_URL + '/users/login/', myInit).then((a) => {
-            console.log(a);
         });
     };
 };
