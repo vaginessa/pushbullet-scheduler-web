@@ -20,10 +20,11 @@ export default connect(bindStore)(React.createClass({
         this.props.dispatch(fetchAccessToken(value.id, value.password));
     },
     render(){
+        const loginReducer = this.props.login;
         return (
             <Container>
                 <Grid centered columns={3} className="stackable">
-                    <LoginPanel loginSubmitClick={this.loginSubmitClick}/>
+                    <LoginPanel loginSubmitClick={this.loginSubmitClick} {...loginReducer}/>
                 </Grid>
             </Container>
         );

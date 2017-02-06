@@ -21,14 +21,14 @@ export default React.createClass({
         };
     },
     render(){
-        const { theme, loginSubmitClick } = this.props;
+        const { theme, loginSubmitClick, isFetching } = this.props;
         return (
             <Grid.Column>
                 <Header as='h4' attached='top' inverted>
                     Login
                 </Header>
                 <Segment attached>
-                    <LoginForm onSubmit={loginSubmitClick} theme={theme}/>
+                    <LoginForm onSubmit={loginSubmitClick} theme={theme} isFetching={isFetching}/>
                 </Segment>
             </Grid.Column>
         );
