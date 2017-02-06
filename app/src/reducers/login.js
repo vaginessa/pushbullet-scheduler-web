@@ -11,7 +11,8 @@ import {
 
 
 export default (state = {
-    isFetching: false
+    isFetching: false,
+    token: null
 }, action) => {
     switch(action.type){
         case REQUEST_ACCESS_TOKEN:
@@ -20,7 +21,8 @@ export default (state = {
             });
         case RECEIVE_ACCESS_TOKEN:
             return Object.assign({}, state, {
-
+                isFetching: false,
+                token: action.token
             });
         default:
             return state;
