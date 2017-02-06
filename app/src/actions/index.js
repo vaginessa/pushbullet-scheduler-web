@@ -53,7 +53,7 @@ export const fetchAccessToken = (id, password) => {
         return fetch(request).then((res) => {
             if(res.status === 200){
                 res.json().then((data) => {
-                    console.log(data.token);
+                    dispatch(receiveAccessToken(data.token));
                 });
             }
         });
