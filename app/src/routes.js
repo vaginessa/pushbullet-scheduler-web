@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form'

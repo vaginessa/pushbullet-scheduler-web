@@ -4,7 +4,7 @@
 "use strict";
 
 import React from 'react';
-import { Grid, Segment, Header, Input, Form, Button } from 'semantic-ui-react';
+import { Grid, Segment, Header } from 'semantic-ui-react';
 
 import config from '../config';
 import LoginForm from './LoginForm';
