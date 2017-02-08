@@ -39,6 +39,10 @@ const store = createStore(
 
 const history = syncHistoryWithStore(hashHistory, store);
 
+const requireAuth = () => {
+    //TODO
+};
+
 const App = React.createClass({
     render(){
         return (
@@ -46,10 +50,9 @@ const App = React.createClass({
                 <Router history={history}>
                     <Route path="/" component={routers.Root}>
                         <IndexRoute component={routers.Home}/>
-                        <Route path="list" component={routers.List}/>
+                        <Route path="list" component={routers.List} onEnter={requireAuth}/>
                         <Route path="login" component={routers.Login}/>
                         {/*<Route path="user" component={User}/>*/}
-                        {/*<Route path="login" component={Login}/>*/}
                     </Route>
                 </Router>
             </Provider>
