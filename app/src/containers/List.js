@@ -4,14 +4,14 @@
 "use strict";
 
 import React from 'react';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 
 export default React.createClass({
     render(){
         return (
             <Container>
-                wekfaweoifjawefawe
+                awfawefaewf
             </Container>
         );
     }
