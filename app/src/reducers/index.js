@@ -3,9 +3,9 @@
  */
 "use strict";
 
-import login from './login.js';
+import user from './User.js';
 
 
 export default {
-    login
+    user
 };
