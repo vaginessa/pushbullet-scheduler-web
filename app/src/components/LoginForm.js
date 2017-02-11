@@ -20,7 +20,7 @@ export default reduxForm({
                            component={Input}/>
                 </Form.Field>
                 <Form.Field>
-                    <Field name="password" type="text" icon="lock" iconPosition="left" placeholder="Password"
+                    <Field name="password" type="password" icon="lock" iconPosition="left" placeholder="Password"
                            required={true} component={Input}/>
                 </Form.Field>
                 <Form.Field>
