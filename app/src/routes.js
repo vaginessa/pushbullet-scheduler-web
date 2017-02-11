@@ -39,8 +39,16 @@ const store = createStore(
 
 const history = syncHistoryWithStore(hashHistory, store);
 
-const requireAuth = () => {
-    //TODO
+const requireAuth = (nextState, replace) => {
+    if(store.getState().user.accessToken === null){
+        replace('/login');
+    }
+};
+
+const requireAnonymous = (nextState, replace) => {
+    if(store.getState().user.accessToken !== null){
+        replace('/');
+    }
 };
 
 const App = React.createClass({
@@ -51,7 +59,7 @@ const App = React.createClass({
                     <Route path="/" component={routers.Root}>
                         <IndexRoute component={routers.Home}/>
                         <Route path="list" component={routers.List} onEnter={requireAuth}/>
-                        <Route path="login" component={routers.Login}/>
+                        <Route path="login" component={routers.Login} onEnter={requireAnonymous}/>
                         {/*<Route path="user" component={User}/>*/}
                     </Route>
                 </Router>
