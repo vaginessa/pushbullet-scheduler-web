@@ -13,7 +13,7 @@ import LoginForm from '../forms/LoginForm';
 export default React.createClass({
     propTypes: {
         theme: React.PropTypes.string,
-        loginSubmitClick: React.PropTypes.func.required
+        loginSubmitClick: React.PropTypes.func.isRequired
     },
     getDefaultProps() {
         return {
