@@ -12,7 +12,14 @@ import {
 
 export default (state = {
     isFetching: false,
-    token: null
+    accessToken: null,
+    data: {
+        email: null,
+        name: null,
+        token: null,
+        createdAt: null,
+        updatedAt: null
+    }
 }, action) => {
     switch(action.type){
         case REQUEST_ACCESS_TOKEN:
@@ -22,7 +29,8 @@ export default (state = {
         case RECEIVE_ACCESS_TOKEN:
             return Object.assign({}, state, {
                 isFetching: false,
-                token: action.token
+                accessToken: action.accessToken,
+                data: action.data
             });
         default:
             return state;

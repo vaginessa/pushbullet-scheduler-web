@@ -23,7 +23,7 @@ export default connect(bindStore)(React.createClass({
         this.props.dispatch(fetchAccessToken(value.id, value.password));
     },
     componentWillReceiveProps(nextProps) {
-        if (nextProps.user.token !== null) {
+        if (nextProps.user.accessToken !== null) {
             this.props.dispatch(push('/'));
         }
     },

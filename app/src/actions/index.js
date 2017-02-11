@@ -30,10 +30,11 @@ export const requestAccessToken = () => {
     };
 };
 
-export const receiveAccessToken = (token) => {
+export const receiveAccessToken = (data) => {
     return {
         type: RECEIVE_ACCESS_TOKEN,
-        token
+        accessToken: data.accessToken,
+        info: data.data
     };
 };
 
@@ -53,7 +54,7 @@ export const fetchAccessToken = (id, password) => {
         return fetch(request).then((res) => {
             if(res.status === 200){
                 res.json().then((data) => {
-                    dispatch(receiveAccessToken(data.token));
+                    dispatch(receiveAccessToken(data));
                 });
             }
         });
