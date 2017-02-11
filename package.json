@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "prod": "webpack --config webpack/webpack.config.prod.js",
+    "prod": "webpack --config webpack/webpack.config.prod.js --optimize-minimize",
     "dev": "webpack-dev-server --config webpack/webpack.config.dev.js"
   },
   "repository": "https://github.com/guswnsxodlf/pushbullet-scheduler-web.git",
