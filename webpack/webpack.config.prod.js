@@ -52,8 +52,9 @@ module.exports = {
             filename: path.join(__dirname, '../app/dist/index.html')
         }),
         new webpack.DefinePlugin({
-            DEVELOPMENT: false,
-            PRODUCTION: true
+            'process.env': {
+                NODE_ENV: JSON.stringify('PROD')
+            }
         })
     ],
     devtool: "source-map"

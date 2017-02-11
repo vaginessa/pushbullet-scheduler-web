@@ -6,10 +6,10 @@ const data = {};
 
 data.THEME = 'teal';
 
-if(DEVELOPMENT){
-    data.BASE_URL = 'http://localhost:1234';
-}else if(PRODUCTION){
+if(process.env === 'PROD'){
     data.BASE_URL = '';
+}else{
+    data.BASE_URL = 'http://localhost:1234';
 }
 
 export default data;

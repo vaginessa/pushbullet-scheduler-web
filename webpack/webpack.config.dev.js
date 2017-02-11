@@ -35,12 +35,13 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            DEVELOPMENT: true,
-            PRODUCTION: false
+            'process.env': {
+                NODE_ENV: JSON.stringify('DEV')
+            }
         })
     ],
 
-    devtool: "source-map",
+    devtool: "eval",
 
     // To use browserHistory
     devServer: {
