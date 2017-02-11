@@ -17,11 +17,11 @@ export default reduxForm({
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
                     <Field name="id" type="text" icon="user" iconPosition="left" placeholder="ID" required={true}
-                           component={Input}/>
+                           component={Input} {...Field.input}/>
                 </Form.Field>
                 <Form.Field>
                     <Field name="password" type="password" icon="lock" iconPosition="left" placeholder="Password"
-                           required={true} component={Input}/>
+                           required={true} component={Input} {...Field.input}/>
                 </Form.Field>
                 <Form.Field>
                     <Button fluid={true} type="submit" color={theme} disabled={isFetching}>
