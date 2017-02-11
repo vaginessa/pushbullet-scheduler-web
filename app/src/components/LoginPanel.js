@@ -7,7 +7,7 @@ import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 
 import config from '../config';
-import LoginForm from './LoginForm';
+import LoginForm from '../forms/LoginForm';
 
 
 export default React.createClass({
