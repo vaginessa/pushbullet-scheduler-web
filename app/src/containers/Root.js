@@ -4,18 +4,38 @@
 "use strict";
 
 import React from 'react';
-import { Menu, Container } from 'semantic-ui-react';
+import { Menu, Container, Dropdown } from 'semantic-ui-react';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
 import config from '../config';
 
 
-export default connect()(React.createClass({
+const bindStore = (state) => {
+    return {
+        user: state.user
+    };
+};
+
+export default connect(bindStore)(React.createClass({
     itemClick(e, { to }) {
         this.props.dispatch(push(to));
     },
     render() {
+        // Change right side menu depends on login state.
+        let rightMenu;
+        if(this.props.user.accessToken === null){
+            rightMenu = <Menu.Item onClick={this.itemClick} to="/login" link={true} name="Login"/>;
+        }else{
+            rightMenu = (
+                <Dropdown as={Menu.Item} text={this.props.user.data.name}>
+                    <Dropdown.Menu>
+                        <Dropdown.Item>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            );
+        }
+
         return (
             <div>
                 <Menu fixed='top' inverted={true}>
@@ -26,13 +46,7 @@ export default connect()(React.createClass({
                         <Menu.Item onClick={this.itemClick} to="/" link={true} icon="plus"/>
 
                         <Menu.Menu position='right'>
-                            {/*<Dropdown as={Menu.Item} text='Login'>*/}
-                                {/*<Dropdown.Menu>*/}
-                                    {/*<Dropdown.Header>Text Size</Dropdown.Header>*/}
-                                    {/*<Dropdown.Item>Small</Dropdown.Item>*/}
-                                {/*</Dropdown.Menu>*/}
-                            {/*</Dropdown>*/}
-                            <Menu.Item onClick={this.itemClick} to="/login" link={true} name="Login"/>
+                            { rightMenu }
                         </Menu.Menu>
                     </Container>
                 </Menu>
