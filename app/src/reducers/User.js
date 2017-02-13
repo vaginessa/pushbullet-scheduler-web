@@ -30,7 +30,7 @@ export default (state = {
             return Object.assign({}, state, {
                 isFetching: false,
                 accessToken: action.accessToken,
-                data: action.data
+                data: action.info
             });
         default:
             return state;
