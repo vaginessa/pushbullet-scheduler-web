@@ -28,7 +28,7 @@ export default connect(bindStore)(React.createClass({
             rightMenu = <Menu.Item onClick={this.itemClick} to="/login" link={true} name="Login"/>;
         }else{
             rightMenu = (
-                <Dropdown as={Menu.Item} text={this.props.user.data.name}>
+                <Dropdown item text={this.props.user.data.name}>
                     <Dropdown.Menu>
                         <Dropdown.Item>Logout</Dropdown.Item>
                     </Dropdown.Menu>
