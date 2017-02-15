@@ -48,12 +48,14 @@ const syncedHistory = syncHistoryWithStore(history, store);
 
 const requireAuth = (nextState, replace) => {
     if(store.getState().user.accessToken === null){
+        alert('로그인이 필요한 서비스입니다.');
         replace('/login');
     }
 };
 
 const requireAnonymous = (nextState, replace) => {
     if(store.getState().user.accessToken !== null){
+        alert('로그아웃 상태여야 합니다.');
         replace('/');
     }
 };
