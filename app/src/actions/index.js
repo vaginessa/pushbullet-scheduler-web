@@ -15,14 +15,6 @@ espromise.polyfill();
 export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
 
-
-// Constants
-export const Routers = {
-    HOME: "HOME",
-    LIST: "LIST"
-};
-
-
 // Actions creators
 export const requestAccessToken = () => {
     return {

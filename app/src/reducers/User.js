@@ -4,7 +4,6 @@
 "use strict";
 
 import {
-    Routers,
     REQUEST_ACCESS_TOKEN,
     RECEIVE_ACCESS_TOKEN
 } from '../actions/index.js';
