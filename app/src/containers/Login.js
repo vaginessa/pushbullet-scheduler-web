@@ -31,7 +31,7 @@ export default connect(bindStore)(React.createClass({
         const loginReducer = this.props.user;
         return (
             <Container>
-                <Grid centered columns={3} className="stackable">
+                <Grid centered columns={3} stackable={true}>
                     <LoginPanel loginSubmitClick={this.loginSubmitClick} {...loginReducer}/>
                 </Grid>
             </Container>
