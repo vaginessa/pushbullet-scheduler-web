@@ -4,8 +4,10 @@
 "use strict";
 
 import user from './User.js';
+import jobList from './JobList.js';
 
 
 export default {
-    user
+    user,
+    jobList
 };
