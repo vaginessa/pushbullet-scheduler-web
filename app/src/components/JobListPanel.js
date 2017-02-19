@@ -4,9 +4,10 @@
 "use strict";
 
 import React from 'react';
-import { Grid, Segment, Header, Table } from 'semantic-ui-react';
+import { Grid, Header, Table, Dimmer, Loader, Icon } from 'semantic-ui-react';
 
 import config from '../config';
+import JobItem from './JobItem.js';
 
 
 export default React.createClass({
@@ -21,40 +22,41 @@ export default React.createClass({
         };
     },
     render(){
-        const { columnWidth } = this.props;
+        const { columnWidth, rows, isFetching } = this.props;
 
         return (
             <Grid.Column width={columnWidth}>
                 <Header as='h2'>
                     Job list
                 </Header>
-                <Table stackable>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Status</Table.HeaderCell>
-                            <Table.HeaderCell textAlign='right'>Notes</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
+                <Dimmer.Dimmable>
+                    <Dimmer active={isFetching} inverted>
+                        <Loader/>
+                    </Dimmer>
+                    <Table stackable>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Name</Table.HeaderCell>
+                                <Table.HeaderCell>Message</Table.HeaderCell>
+                                <Table.HeaderCell>Send to</Table.HeaderCell>
+                                <Table.HeaderCell textAlign='right'>Run at</Table.HeaderCell>
+                                <Table.HeaderCell><Icon name='refresh'/></Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
 
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell>John</Table.Cell>
-                            <Table.Cell>Approved</Table.Cell>
-                            <Table.Cell textAlign='right'>None</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Jamie</Table.Cell>
-                            <Table.Cell>Approved</Table.Cell>
-                            <Table.Cell textAlign='right'>Requires call</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Jill</Table.Cell>
-                            <Table.Cell>Denied</Table.Cell>
-                            <Table.Cell textAlign='right'>None</Table.Cell>
-                        </Table.Row>
-                    </Table.Body>
-                </Table>
+                        <Table.Body>
+                            {
+                                rows.map((data) => {
+                                    const date = new Date('2017-02-19T09:33:00.000Z');
+                                    return <JobItem name={data.name} message={data.body} sendTo={data.targetEmail}
+                                                    runAt="2017.03.08 11:03"/>;
+                                })
+                            }
+                            <JobItem name="Study" message="It's time to study man!!" sendTo="guswnsxodlf@naver.com"
+                                     runAt="2017.03.08 11:03"/>
+                        </Table.Body>
+                    </Table>
+                </Dimmer.Dimmable>
             </Grid.Column>
         );
     }
