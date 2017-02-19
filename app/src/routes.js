@@ -20,6 +20,7 @@ import { reducer as formReducer } from 'redux-form'
 
 import reducers from './reducers';
 import routers from './containers';
+import { fetchAccessToken } from './actions/index.js';
 
 
 let history;
@@ -78,5 +79,9 @@ const App = React.createClass({
 });
 
 window.onload = () => {
+    const loginData = JSON.parse(localStorage.getItem('user'));
+    if(loginData !== null){
+        store.dispatch(fetchAccessToken(loginData.id, loginData.password));
+    }
     ReactDOM.render(<App/>, document.getElementById("root"));
 };
