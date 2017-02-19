@@ -4,14 +4,18 @@
 "use strict";
 
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
+
+import JobListPanel from '../components/JobListPanel.js';
 
 
 export default React.createClass({
     render(){
         return (
             <Container>
-                awfawefaewf
+                <Grid stackable={true}>
+                    <JobListPanel/>
+                </Grid>
             </Container>
         );
     }
