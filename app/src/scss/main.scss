@@ -1,6 +1,9 @@
 // Variables
 @import 'variables.scss';
 
+// Includes
+@import 'tables.scss';
+
 body {
   background-color: $bg-color;
   padding-top: 60px;
