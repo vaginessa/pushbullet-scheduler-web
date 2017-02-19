@@ -42,7 +42,7 @@ export default connect(bindStore)(React.createClass({
                     <Container>
                         <Menu.Item header onClick={this.itemClick} to="/" color={config.THEME} active={true} link={true}
                                    name="Scheduler"/>
-                        <Menu.Item onClick={this.itemClick} to="/list" link={true} name="List"/>
+                        <Menu.Item onClick={this.itemClick} to="/list" link={true} name="Job list"/>
                         <Menu.Item onClick={this.itemClick} to="/" link={true} icon="plus"/>
 
                         <Menu.Menu position='right'>
