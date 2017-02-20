@@ -18,14 +18,14 @@ const bindStore = (state) => {
 };
 
 export default connect(bindStore)(React.createClass({
-    itemClick(e, { to }) {
+    routerClick(e, { to }) {
         this.props.dispatch(push(to));
     },
     render() {
         // Change right side menu depends on login state.
         let rightMenu;
         if(this.props.user.accessToken === null){
-            rightMenu = <Menu.Item onClick={this.itemClick} to="/login" link={true} name="Login"/>;
+            rightMenu = <Menu.Item onClick={this.routerClick} to="/login" link={true} name="Login"/>;
         }else{
             rightMenu = (
                 <Dropdown item text={this.props.user.data.name}>
@@ -40,10 +40,10 @@ export default connect(bindStore)(React.createClass({
             <div>
                 <Menu fixed='top' inverted={true}>
                     <Container>
-                        <Menu.Item header onClick={this.itemClick} to="/" color={config.THEME} active={true} link={true}
+                        <Menu.Item header onClick={this.routerClick} to="/" color={config.THEME} active={true} link={true}
                                    name="Scheduler"/>
-                        <Menu.Item onClick={this.itemClick} to="/list" link={true} name="Job list"/>
-                        <Menu.Item onClick={this.itemClick} to="/" link={true} icon="plus"/>
+                        <Menu.Item onClick={this.routerClick} to="/list" link={true} name="Job list"/>
+                        <Menu.Item onClick={this.routerClick} to="/" link={true} icon="plus"/>
 
                         <Menu.Menu position='right'>
                             { rightMenu }
