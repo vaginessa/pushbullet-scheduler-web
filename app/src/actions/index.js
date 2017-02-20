@@ -24,7 +24,7 @@ const requestAccessToken = () => {
     };
 };
 
-const receiveAccessToken = (data) => {
+export const receiveAccessToken = (data) => {
     return {
         type: RECEIVE_ACCESS_TOKEN,
         accessToken: data.accessToken,
@@ -49,8 +49,8 @@ export const fetchAccessToken = (id, password) => {
             if(res.status === 200){
                 res.json().then((data) => {
                     localStorage.setItem('user', JSON.stringify({
-                        id,
-                        password
+                        accessToken: data.accessToken,
+                        data: data.data
                     }));
                     dispatch(receiveAccessToken(data));
                 });
