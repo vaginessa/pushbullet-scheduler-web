@@ -9,7 +9,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 
 import config from '../config';
-
+import { logout } from '../actions/index.js';
 
 const bindStore = (state) => {
     return {
@@ -21,6 +21,10 @@ export default connect(bindStore)(React.createClass({
     routerClick(e, { to }) {
         this.props.dispatch(push(to));
     },
+    logoutClick(){
+        this.props.dispatch(logout());
+        this.props.dispatch(push('/'));
+    },
     render() {
         // Change right side menu depends on login state.
         let rightMenu;
@@ -30,7 +34,7 @@ export default connect(bindStore)(React.createClass({
             rightMenu = (
                 <Dropdown item text={this.props.user.data.name}>
                     <Dropdown.Menu>
-                        <Dropdown.Item>Logout</Dropdown.Item>
+                        <Dropdown.Item onClick={this.logoutClick}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             );

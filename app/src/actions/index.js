@@ -16,6 +16,7 @@ export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
 export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
+export const LOGOUT = 'LOGOUT';
 
 // Actions creators
 const requestAccessToken = () => {
@@ -59,10 +60,17 @@ export const fetchAccessToken = (id, password) => {
     };
 };
 
+export const logout = () => {
+    localStorage.clear();
+    return {
+        type: LOGOUT
+    };
+};
+
 const requestJobList = () => {
     return {
         type: REQUEST_JOB_LIST
-    }
+    };
 };
 
 const receiveJobList = (data) => {
@@ -70,7 +78,7 @@ const receiveJobList = (data) => {
         type: RECEIVE_JOB_LIST,
         count: data.count,
         rows: data.rows
-    }
+    };
 };
 
 export const fetchJobList = (accessToken) => {
