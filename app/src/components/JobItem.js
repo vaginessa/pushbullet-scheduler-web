@@ -9,16 +9,18 @@ import { Icon, Table } from 'semantic-ui-react';
 
 export default React.createClass({
     propTypes: {
+        number: React.PropTypes.number.isRequired,
         name: React.PropTypes.string.isRequired,
         message: React.PropTypes.string.isRequired,
         sendTo: React.PropTypes.string.isRequired,
         runAt: React.PropTypes.string.isRequired,
     },
     render(){
-        const { name, message, sendTo, runAt } = this.props;
+        const { number, name, message, sendTo, runAt } = this.props;
 
         return (
             <Table.Row>
+                <Table.Cell>{number}</Table.Cell>
                 <Table.Cell><strong>{name}</strong></Table.Cell>
                 <Table.Cell>{message}</Table.Cell>
                 <Table.Cell>{sendTo}</Table.Cell>

@@ -3,6 +3,7 @@
  */
 "use strict";
 
+import dateFormat from 'dateformat';
 import React from 'react';
 import { Grid, Header, Table, Dimmer, Loader, Icon } from 'semantic-ui-react';
 
@@ -36,6 +37,7 @@ export default React.createClass({
                     <Table stackable>
                         <Table.Header>
                             <Table.Row>
+                                <Table.HeaderCell>#</Table.HeaderCell>
                                 <Table.HeaderCell>Name</Table.HeaderCell>
                                 <Table.HeaderCell>Message</Table.HeaderCell>
                                 <Table.HeaderCell>Send to</Table.HeaderCell>
@@ -46,14 +48,12 @@ export default React.createClass({
 
                         <Table.Body>
                             {
-                                rows.map((data) => {
-                                    const date = new Date('2017-02-19T09:33:00.000Z');
+                                rows.map((data, index) => {
+                                    const dateString = dateFormat(new Date(data.runAt), 'yyyy.mm.dd HH:MM');
                                     return <JobItem name={data.name} message={data.body} sendTo={data.targetEmail}
-                                                    runAt="2017.03.08 11:03"/>;
+                                                    key={index} number={index+1} runAt={dateString}/>;
                                 })
                             }
-                            <JobItem name="Study" message="It's time to study man!!" sendTo="guswnsxodlf@naver.com"
-                                     runAt="2017.03.08 11:03"/>
                         </Table.Body>
                     </Table>
                 </Dimmer.Dimmable>

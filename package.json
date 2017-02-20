@@ -10,6 +10,7 @@
   "author": "전현준 <guswnsxodlf@gmail.com>",
   "license": "UNLICENSED",
   "dependencies": {
+    "dateformat": "^2.0.0",
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.1",
