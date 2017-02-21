@@ -23,7 +23,7 @@ export default React.createClass({
         };
     },
     render(){
-        const { columnWidth, rows, isFetching } = this.props;
+        const { columnWidth, rows, isListFetching } = this.props;
 
         return (
             <Grid.Column width={columnWidth}>
@@ -31,7 +31,7 @@ export default React.createClass({
                     Job list
                 </Header>
                 <Dimmer.Dimmable>
-                    <Dimmer active={isFetching} inverted>
+                    <Dimmer active={isListFetching} inverted>
                         <Loader/>
                     </Dimmer>
                     <Table stackable>
