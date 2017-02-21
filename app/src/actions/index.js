@@ -16,6 +16,8 @@ export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
 export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
+export const REQUEST_ADD_JOB = 'REQUEST_ADD_JOB';
+export const RECEIVE_ADD_JOB = 'RECEIVE_ADD_JOB';
 export const LOGOUT = 'LOGOUT';
 
 // Actions creators
@@ -87,7 +89,6 @@ export const fetchJobList = (accessToken) => {
         const request = new Request(config.BASE_URL + '/jobs', {
             method: 'GET',
             headers: {
-                "Content-Type": "application/json; charset=UTF-8",
                 "accessToken": accessToken
             }
         });
@@ -95,6 +96,45 @@ export const fetchJobList = (accessToken) => {
             if(res.status === 200){
                 res.json().then((data) => {
                     dispatch(receiveJobList(data));
+                });
+            }
+        });
+    };
+};
+
+const requestAddJob = () => {
+    return {
+        type: REQUEST_ADD_JOB
+    };
+};
+
+const receiveAddJob = () => {
+    return {
+        type: RECEIVE_ADD_JOB
+    };
+
+};
+
+export const fetchAddJob = (accessToken, name, body, runAt, targetEmail) => {
+    return (dispatch) => {
+        dispatch(requestAddJob());
+        const request = new Request(config.BASE_URL + '/jobs', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+                "accessToken": accessToken
+            },
+            body: JSON.stringify({
+                name,
+                body,
+                runAt,
+                targetEmail
+            })
+        });
+        return fetch(request).then((res) => {
+            if(res.status === 200){
+                res.json().then((data) => {
+                    dispatch(receiveAddJob(data));
                 });
             }
         });
