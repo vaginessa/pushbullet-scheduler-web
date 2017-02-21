@@ -16,11 +16,23 @@ export default reduxForm({
         return (
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
+                    <label>Name</label>
                     <Field name="name" type="text" placeholder="Name" required={true}
                            component={Input} {...Field.input}/>
                 </Form.Field>
                 <Form.Field>
+                    <label>Message</label>
                     <Field name="message" type="text" placeholder="Message"
+                           required={true} component={Input} {...Field.input}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Receiver's email</label>
+                    <Field name="targetEmail" type="text" placeholder="Receiver's email"
+                           required={true} component={Input} {...Field.input}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Run At</label>
+                    <Field name="runAt" type="text" placeholder="Run At"
                            required={true} component={Input} {...Field.input}/>
                 </Form.Field>
                 <Form.Field>
