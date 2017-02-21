@@ -15,7 +15,7 @@ import { fetchJobList } from '../actions/index.js';
 const bindStore = (state) => {
     return {
         user: state.user,
-        jobList: state.jobList
+        job: state.job
     };
 };
 
@@ -30,7 +30,7 @@ export default connect(bindStore)(React.createClass({
         return (
             <Container>
                 <Grid stackable={true}>
-                    <JobListPanel columnWidth={10} {...this.props.jobList}/>
+                    <JobListPanel columnWidth={10} {...this.props.job}/>
                     <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick}/>
                 </Grid>
             </Container>
