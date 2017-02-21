@@ -8,6 +8,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import JobListPanel from '../components/JobListPanel.js';
+import AddJobPanel from '../components/AddJobPanel.js';
 import { fetchJobList } from '../actions/index.js';
 
 
@@ -22,11 +23,15 @@ export default connect(bindStore)(React.createClass({
     componentWillMount(){
         this.props.dispatch(fetchJobList(this.props.user.accessToken));
     },
+    addJobSubmitClick(value){
+
+    },
     render(){
         return (
             <Container>
                 <Grid stackable={true}>
-                    <JobListPanel {...this.props.jobList}/>
+                    <JobListPanel columnWidth={10} {...this.props.jobList}/>
+                    <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick}/>
                 </Grid>
             </Container>
         );
