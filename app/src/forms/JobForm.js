@@ -32,7 +32,7 @@ export default reduxForm({
                 </Form.Field>
                 <Form.Field>
                     <label>Run At</label>
-                    <Field name="runAt" type="text" placeholder="Run At"
+                    <Field name="runAt" type="date" placeholder="Run At"
                            required={true} component={Input} {...Field.input}/>
                 </Form.Field>
                 <Form.Field>
