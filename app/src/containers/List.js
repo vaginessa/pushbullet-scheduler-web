@@ -34,7 +34,7 @@ export default connect(bindStore)(React.createClass({
             <Container>
                 <Grid stackable={true}>
                     <JobListPanel columnWidth={10} {...this.props.job}/>
-                    <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick}/>
+                    <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick} {...this.props.job}/>
                 </Grid>
             </Container>
         );

@@ -23,14 +23,14 @@ export default React.createClass({
         };
     },
     render(){
-        const { theme, addJobSubmitClick, isFetching, columnWidth } = this.props;
+        const { theme, addJobSubmitClick, isFormFetching, columnWidth } = this.props;
         return (
             <Grid.Column width={columnWidth}>
                 <Header as='h2'>
                     Add job
                 </Header>
                 <Segment>
-                    <JobForm onSubmit={addJobSubmitClick} theme={theme} isFetching={isFetching}/>
+                    <JobForm onSubmit={addJobSubmitClick} theme={theme} isFetching={isFormFetching}/>
                 </Segment>
             </Grid.Column>
         );
