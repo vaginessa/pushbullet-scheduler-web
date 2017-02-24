@@ -4,6 +4,7 @@
 "use strict";
 
 import React from 'react';
+import dateFormat from 'dateformat';
 import { Field, reduxForm } from 'redux-form';
 import { Form } from 'semantic-ui-react';
 
@@ -47,7 +48,8 @@ export default reduxForm({
                 <Form.Group>
                     <Form.Field width="8">
                         <label>Run date</label>
-                        <Field name="runDate" type="date" required={true} component={Form.Input} {...Field.input}/>
+                        <Field name="runDate" type="date" required={true} component={Form.Input}
+                               min={dateFormat(new Date(), 'yyyy-mm-dd')} {...Field.input}/>
                     </Form.Field>
                     <Form.Field width="4">
                         <label>Hour</label>
