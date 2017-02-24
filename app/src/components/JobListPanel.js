@@ -49,7 +49,7 @@ export default React.createClass({
                         <Table.Body>
                             {
                                 rows.map((data, index) => {
-                                    const dateString = dateFormat(new Date(data.runAt), 'yyyy.mm.dd HH:MM');
+                                    const dateString = dateFormat(new Date(data.runAt), 'yyyy.mm.dd. HH:MM');
                                     return <JobItem name={data.name} message={data.body} sendTo={data.targetEmail}
                                                     key={index} number={index+1} runAt={dateString}/>;
                                 })
