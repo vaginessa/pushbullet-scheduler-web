@@ -4,12 +4,13 @@
 "use strict";
 
 import React from 'react';
+import dateFormat from 'dateformat';
 import { Container, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import JobListPanel from '../components/JobListPanel.js';
 import AddJobPanel from '../components/AddJobPanel.js';
-import { fetchJobList } from '../actions/index.js';
+import { fetchJobList, fetchAddJob } from '../actions/index.js';
 
 
 const bindStore = (state) => {
@@ -24,7 +25,9 @@ export default connect(bindStore)(React.createClass({
         this.props.dispatch(fetchJobList(this.props.user.accessToken));
     },
     addJobSubmitClick(value){
-        console.log(value);
+        const { name, message, runDate, runHour, runMinute, targetEmail } = value;
+        const dateString = dateFormat(new Date(runDate + ' ' + runHour + ':' + runMinute), 'yyyy-mm-dd HH:MM');
+        this.props.dispatch(fetchAddJob(this.props.user.accessToken, name, message, dateString, targetEmail));
     },
     render(){
         return (
