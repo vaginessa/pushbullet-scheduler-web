@@ -24,7 +24,7 @@ export default connect(bindStore)(React.createClass({
         this.props.dispatch(fetchJobList(this.props.user.accessToken));
     },
     addJobSubmitClick(value){
-
+        console.log(value);
     },
     render(){
         return (
