@@ -135,6 +135,7 @@ export const fetchAddJob = (accessToken, name, body, runAt, targetEmail) => {
             if(res.status === 200){
                 res.json().then((data) => {
                     dispatch(receiveAddJob(data));
+                    dispatch(fetchJobList(accessToken));
                 });
             }
         });
