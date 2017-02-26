@@ -7,7 +7,8 @@ import {
     REQUEST_JOB_LIST,
     RECEIVE_JOB_LIST,
     REQUEST_ADD_JOB,
-    RECEIVE_ADD_JOB
+    RECEIVE_ADD_JOB,
+    REQUEST_DELETE_JOB
 } from '../actions/index.js';
 
 
@@ -18,6 +19,7 @@ export default (state = {
     rows: []
 }, action) => {
     switch(action.type){
+        case REQUEST_DELETE_JOB:
         case REQUEST_JOB_LIST:
             return Object.assign({}, state, {
                 isListFetching: true
