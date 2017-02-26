@@ -18,6 +18,7 @@ export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
 export const REQUEST_ADD_JOB = 'REQUEST_ADD_JOB';
 export const RECEIVE_ADD_JOB = 'RECEIVE_ADD_JOB';
+export const REQUEST_DELETE_JOB = 'REQUEST_DELETE_JOB';
 export const LOGOUT = 'LOGOUT';
 
 // Actions creators
@@ -134,7 +135,33 @@ export const fetchAddJob = (accessToken, name, body, runAt, targetEmail) => {
         return fetch(request).then((res) => {
             if(res.status === 200){
                 res.json().then((data) => {
-                    dispatch(receiveAddJob(data));
+                    dispatch(receiveAddJob());
+                    dispatch(fetchJobList(accessToken));
+                });
+            }
+        });
+    };
+};
+
+const requestDeleteJob = () => {
+    return {
+        type: REQUEST_DELETE_JOB
+    };
+};
+
+export const fetchDeleteJob = (accessToken, id) => {
+    return (dispatch) => {
+        dispatch(requestDeleteJob());
+        const request = new Request(config.BASE_URL + '/jobs/' + id, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8",
+                "accessToken": accessToken
+            },
+        });
+        return fetch(request).then((res) => {
+            if(res.status === 200){
+                res.json().then((data) => {
                     dispatch(fetchJobList(accessToken));
                 });
             }
