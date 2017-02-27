@@ -29,11 +29,14 @@ export default connect(bindStore)(React.createClass({
         const dateString = dateFormat(new Date(runDate + ' ' + runHour + ':' + runMinute), 'yyyy-mm-dd HH:MM');
         this.props.dispatch(fetchAddJob(this.props.user.accessToken, name, message, dateString, targetEmail));
     },
+    itemDeleteClick(){
+        console.log('hello')
+    },
     render(){
         return (
             <Container>
                 <Grid stackable={true}>
-                    <JobListPanel columnWidth={10} {...this.props.job}/>
+                    <JobListPanel columnWidth={10} itemDeleteClick={this.itemDeleteClick} {...this.props.job}/>
                     <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick} {...this.props.job}/>
                 </Grid>
             </Container>

@@ -15,6 +15,7 @@ export default React.createClass({
     propTypes: {
         theme: React.PropTypes.string,
         columnWidth: React.PropTypes.number,
+        itemDeleteClick: React.PropTypes.func.isRequired,
     },
     getDefaultProps() {
         return {
@@ -23,7 +24,7 @@ export default React.createClass({
         };
     },
     render(){
-        const { columnWidth, rows, isListFetching } = this.props;
+        const { columnWidth, rows, isListFetching, itemDeleteClick } = this.props;
 
         return (
             <Grid.Column width={columnWidth}>
@@ -50,8 +51,15 @@ export default React.createClass({
                             {
                                 rows.map((data, index) => {
                                     const dateString = dateFormat(new Date(data.runAt), 'yyyy.mm.dd. HH:MM');
-                                    return <JobItem name={data.name} message={data.body} sendTo={data.targetEmail}
-                                                    key={index} number={index+1} runAt={dateString}/>;
+                                    return <JobItem
+                                        name={data.name}
+                                        message={data.body}
+                                        sendTo={data.targetEmail}
+                                        number={index+1}
+                                        runAt={dateString}
+                                        deleteClick={itemDeleteClick}
+                                        key={index}
+                                    />;
                                 })
                             }
                         </Table.Body>

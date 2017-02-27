@@ -14,9 +14,10 @@ export default React.createClass({
         message: React.PropTypes.string.isRequired,
         sendTo: React.PropTypes.string.isRequired,
         runAt: React.PropTypes.string.isRequired,
+        deleteClick: React.PropTypes.func.isRequired
     },
     render(){
-        const { number, name, message, sendTo, runAt } = this.props;
+        const { number, name, message, sendTo, runAt, deleteClick } = this.props;
 
         return (
             <Table.Row>
@@ -25,7 +26,7 @@ export default React.createClass({
                 <Table.Cell>{message}</Table.Cell>
                 <Table.Cell>{sendTo}</Table.Cell>
                 <Table.Cell textAlign='right'>{runAt}</Table.Cell>
-                <Table.Cell><Icon name='delete'/></Table.Cell>
+                <Table.Cell><Icon name='delete' onClick={deleteClick}/></Table.Cell>
             </Table.Row>
         );
     }
