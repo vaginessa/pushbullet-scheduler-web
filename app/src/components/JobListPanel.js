@@ -52,6 +52,7 @@ export default React.createClass({
                                 rows.map((data, index) => {
                                     const dateString = dateFormat(new Date(data.runAt), 'yyyy.mm.dd. HH:MM');
                                     return <JobItem
+                                        id={data.id}
                                         name={data.name}
                                         message={data.body}
                                         sendTo={data.targetEmail}

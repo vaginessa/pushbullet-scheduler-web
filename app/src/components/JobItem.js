@@ -9,6 +9,7 @@ import { Icon, Table } from 'semantic-ui-react';
 
 export default React.createClass({
     propTypes: {
+        id: React.PropTypes.number.isRequired,
         number: React.PropTypes.number.isRequired,
         name: React.PropTypes.string.isRequired,
         message: React.PropTypes.string.isRequired,
@@ -17,7 +18,7 @@ export default React.createClass({
         deleteClick: React.PropTypes.func.isRequired
     },
     render(){
-        const { number, name, message, sendTo, runAt, deleteClick } = this.props;
+        const { id, number, name, message, sendTo, runAt, deleteClick } = this.props;
 
         return (
             <Table.Row>
@@ -26,7 +27,7 @@ export default React.createClass({
                 <Table.Cell>{message}</Table.Cell>
                 <Table.Cell>{sendTo}</Table.Cell>
                 <Table.Cell textAlign='right'>{runAt}</Table.Cell>
-                <Table.Cell><Icon name='delete' onClick={deleteClick}/></Table.Cell>
+                <Table.Cell><Icon name='delete' onClick={()=>{deleteClick(id, name)}}/></Table.Cell>
             </Table.Row>
         );
     }

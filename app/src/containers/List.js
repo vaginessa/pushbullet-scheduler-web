@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import JobListPanel from '../components/JobListPanel.js';
 import AddJobPanel from '../components/AddJobPanel.js';
-import { fetchJobList, fetchAddJob } from '../actions/index.js';
+import { fetchJobList, fetchAddJob, fetchDeleteJob } from '../actions/index.js';
 
 
 const bindStore = (state) => {
@@ -29,8 +29,10 @@ export default connect(bindStore)(React.createClass({
         const dateString = dateFormat(new Date(runDate + ' ' + runHour + ':' + runMinute), 'yyyy-mm-dd HH:MM');
         this.props.dispatch(fetchAddJob(this.props.user.accessToken, name, message, dateString, targetEmail));
     },
-    itemDeleteClick(){
-        console.log('hello')
+    itemDeleteClick(id, name){
+        if(confirm('Are you sure to delete ' + name.toString() + '?')){
+            this.props.dispatch(fetchDeleteJob(this.props.user.accessToken, id));
+        }
     },
     render(){
         return (
