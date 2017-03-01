@@ -16,6 +16,7 @@ export default React.createClass({
         theme: React.PropTypes.string,
         columnWidth: React.PropTypes.number,
         itemDeleteClick: React.PropTypes.func.isRequired,
+        refreshClick: React.PropTypes.func.isRequired,
     },
     getDefaultProps() {
         return {
@@ -24,7 +25,14 @@ export default React.createClass({
         };
     },
     render(){
-        const { columnWidth, rows, isListFetching, itemDeleteClick } = this.props;
+        const { columnWidth, rows, isListFetching, itemDeleteClick, refreshClick } = this.props;
+        let notice;
+
+        if(rows.length == 0){
+            notice = <Table.Cell colSpan="6" textAlign="center">
+                <strong>You don't have any jobs yet, see the right and add your job!!</strong>
+            </Table.Cell>
+        }
 
         return (
             <Grid.Column width={columnWidth}>
@@ -43,7 +51,7 @@ export default React.createClass({
                                 <Table.HeaderCell>Message</Table.HeaderCell>
                                 <Table.HeaderCell>Send to</Table.HeaderCell>
                                 <Table.HeaderCell textAlign='right'>Run at</Table.HeaderCell>
-                                <Table.HeaderCell><Icon name='refresh'/></Table.HeaderCell>
+                                <Table.HeaderCell><Icon name='refresh' onClick={refreshClick}/></Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -63,6 +71,7 @@ export default React.createClass({
                                     />;
                                 })
                             }
+                            { notice }
                         </Table.Body>
                     </Table>
                 </Dimmer.Dimmable>

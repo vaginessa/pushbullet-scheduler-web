@@ -24,6 +24,9 @@ export default connect(bindStore)(React.createClass({
     componentWillMount(){
         this.props.dispatch(fetchJobList(this.props.user.accessToken));
     },
+    refreshClick(){
+        this.props.dispatch(fetchJobList(this.props.user.accessToken));
+    },
     addJobSubmitClick(value){
         const { name, message, runDate, runHour, runMinute, targetEmail } = value;
         const dateString = dateFormat(new Date(runDate + ' ' + runHour + ':' + runMinute), 'yyyy-mm-dd HH:MM');
@@ -38,7 +41,8 @@ export default connect(bindStore)(React.createClass({
         return (
             <Container>
                 <Grid stackable={true}>
-                    <JobListPanel columnWidth={10} itemDeleteClick={this.itemDeleteClick} {...this.props.job}/>
+                    <JobListPanel columnWidth={10} itemDeleteClick={this.itemDeleteClick}
+                                  refreshClick={this.refreshClick} {...this.props.job}/>
                     <AddJobPanel columnWidth={6} addJobSubmitClick={this.addJobSubmitClick} {...this.props.job}/>
                 </Grid>
             </Container>
