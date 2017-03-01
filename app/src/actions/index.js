@@ -161,9 +161,7 @@ export const fetchDeleteJob = (accessToken, id) => {
         });
         return fetch(request).then((res) => {
             if(res.status === 200){
-                res.json().then((data) => {
-                    dispatch(fetchJobList(accessToken));
-                });
+                dispatch(fetchJobList(accessToken));
             }
         });
     };
