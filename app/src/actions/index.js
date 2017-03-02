@@ -18,6 +18,7 @@ export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
 export const REQUEST_ADD_JOB = 'REQUEST_ADD_JOB';
 export const RECEIVE_ADD_JOB = 'RECEIVE_ADD_JOB';
+export const FAIL_TO_RECEIVE_ADD_JOB = 'FAIL_TO_RECEIVE_ADD_JOB';
 export const REQUEST_DELETE_JOB = 'REQUEST_DELETE_JOB';
 export const LOGOUT = 'LOGOUT';
 
@@ -116,7 +117,13 @@ const receiveAddJob = () => {
 
 };
 
-export const fetchAddJob = (accessToken, name, body, runAt, targetEmail) => {
+const failToReceiveAddJob = () => {
+    return {
+        type: FAIL_TO_RECEIVE_ADD_JOB
+    };
+};
+
+export const fetchAddJob = (accessToken, name, body, runAt, targetEmail, callback) => {
     return (dispatch) => {
         dispatch(requestAddJob());
         const request = new Request(config.BASE_URL + '/jobs', {
@@ -133,12 +140,27 @@ export const fetchAddJob = (accessToken, name, body, runAt, targetEmail) => {
             })
         });
         return fetch(request).then((res) => {
-            if(res.status === 200){
-                res.json().then((data) => {
-                    dispatch(receiveAddJob());
-                    dispatch(fetchJobList(accessToken));
-                });
+            switch(res.status) {
+                case 200:
+                    res.json().then((data) => {
+                        alert("Job " + data.name + " added.");
+                        dispatch(receiveAddJob());
+                        dispatch(fetchJobList(accessToken));
+                    });
+                    break;
+                case 400:
+                    res.text().then((data) => {
+                        alert(data);
+                        dispatch(failToReceiveAddJob());
+                    });
+                    break;
+                case 403:
+                    alert('Please logout and login again.');
+                    break;
             }
+        }, () => {
+            alert("Please try again later..");
+            dispatch(failToReceiveAddJob());
         });
     };
 };

@@ -8,7 +8,8 @@ import {
     RECEIVE_JOB_LIST,
     REQUEST_ADD_JOB,
     RECEIVE_ADD_JOB,
-    REQUEST_DELETE_JOB
+    REQUEST_DELETE_JOB,
+    FAIL_TO_RECEIVE_ADD_JOB
 } from '../actions/index.js';
 
 
@@ -34,6 +35,7 @@ export default (state = {
             return Object.assign({}, state, {
                 isFormFetching: true
             });
+        case FAIL_TO_RECEIVE_ADD_JOB:
         case RECEIVE_ADD_JOB:
             return Object.assign({}, state, {
                 isFormFetching: false
