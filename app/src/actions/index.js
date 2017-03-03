@@ -11,6 +11,12 @@ import config from '../config';
 
 espromise.polyfill();
 
+// Messages
+const SERVER_ERR = '서버 에러..';
+const NEED_LOGIN = '로그인이 필요한 서비스입니다';
+const EMAIL_NOT_FOUND = '이메일을 다시 확인해주세요.';
+const PASSWORD_INCORRECT = '비밀번호를 다시 확인해주세요.';
+
 // Action types
 export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
@@ -115,11 +121,11 @@ export const fetchJobList = (accessToken) => {
                     });
                     break;
                 case 403:
-                    alert('Please logout and login again.');
+                    alert(NEED_LOGIN);
                     break;
             }
         }, () => {
-            alert("Please try again later..");
+            alert(SERVER_ERR);
             dispatch(failToReceiveJobList());
         });
     };
@@ -176,11 +182,11 @@ export const fetchAddJob = (accessToken, name, body, runAt, targetEmail, callbac
                     });
                     break;
                 case 403:
-                    alert('Please logout and login again.');
+                    alert(NEED_LOGIN);
                     break;
             }
         }, () => {
-            alert("Please try again later..");
+            alert(SERVER_ERR);
             dispatch(failToReceiveAddJob());
         });
     };
