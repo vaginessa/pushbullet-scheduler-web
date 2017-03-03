@@ -6,6 +6,7 @@
 import {
     REQUEST_JOB_LIST,
     RECEIVE_JOB_LIST,
+    FAIL_TO_RECEIVE_JOB_LIST,
     REQUEST_ADD_JOB,
     RECEIVE_ADD_JOB,
     REQUEST_DELETE_JOB,
@@ -30,6 +31,10 @@ export default (state = {
                 isListFetching: false,
                 count: action.count,
                 rows: action.rows
+            });
+        case FAIL_TO_RECEIVE_JOB_LIST:
+            return Object.assign({}, state, {
+                isListFetching: false
             });
         case REQUEST_ADD_JOB:
             return Object.assign({}, state, {

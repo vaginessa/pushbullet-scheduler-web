@@ -16,6 +16,7 @@ export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
 export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
+export const FAIL_TO_RECEIVE_JOB_LIST = 'FAIL_TO_RECEIVE_JOB_LIST';
 export const REQUEST_ADD_JOB = 'REQUEST_ADD_JOB';
 export const RECEIVE_ADD_JOB = 'RECEIVE_ADD_JOB';
 export const FAIL_TO_RECEIVE_ADD_JOB = 'FAIL_TO_RECEIVE_ADD_JOB';
@@ -85,6 +86,12 @@ const receiveJobList = (data) => {
     };
 };
 
+const failToReceiveJobList = () => {
+    return {
+        type: FAIL_TO_RECEIVE_JOB_LIST
+    };
+};
+
 export const fetchJobList = (accessToken) => {
     return (dispatch) => {
         dispatch(requestJobList());
@@ -95,11 +102,25 @@ export const fetchJobList = (accessToken) => {
             }
         });
         return fetch(request).then((res) => {
-            if(res.status === 200){
-                res.json().then((data) => {
-                    dispatch(receiveJobList(data));
-                });
+            switch(res.status) {
+                case 200:
+                    res.json().then((data) => {
+                        dispatch(receiveJobList(data));
+                    });
+                    break;
+                case 400:
+                    res.text().then((data) => {
+                        alert(data);
+                        dispatch(failToReceiveJobList());
+                    });
+                    break;
+                case 403:
+                    alert('Please logout and login again.');
+                    break;
             }
+        }, () => {
+            alert("Please try again later..");
+            dispatch(failToReceiveJobList());
         });
     };
 };
