@@ -20,6 +20,7 @@ const PASSWORD_INCORRECT = '비밀번호를 다시 확인해주세요.';
 // Action types
 export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const RECEIVE_ACCESS_TOKEN = 'RECEIVE_ACCESS_TOKEN';
+export const FAIL_TO_RECEIVE_ACCESS_TOKEN = 'FAIL_TO_RECEIVE_ACCESS_TOKEN';
 export const REQUEST_JOB_LIST = 'REQUEST_JOB_LIST';
 export const RECEIVE_JOB_LIST = 'RECEIVE_JOB_LIST';
 export const FAIL_TO_RECEIVE_JOB_LIST = 'FAIL_TO_RECEIVE_JOB_LIST';
@@ -27,6 +28,7 @@ export const REQUEST_ADD_JOB = 'REQUEST_ADD_JOB';
 export const RECEIVE_ADD_JOB = 'RECEIVE_ADD_JOB';
 export const FAIL_TO_RECEIVE_ADD_JOB = 'FAIL_TO_RECEIVE_ADD_JOB';
 export const REQUEST_DELETE_JOB = 'REQUEST_DELETE_JOB';
+export const FAIL_TO_DELETE_JOB = 'FAIL_TO_DELETE_JOB';
 export const LOGOUT = 'LOGOUT';
 
 // Actions creators
@@ -44,6 +46,12 @@ export const receiveAccessToken = (data) => {
     };
 };
 
+export const failToReceiveAccessToken = () => {
+    return {
+        type: FAIL_TO_RECEIVE_ACCESS_TOKEN,
+    };
+};
+
 export const fetchAccessToken = (id, password) => {
     return (dispatch) => {
         dispatch(requestAccessToken());
@@ -58,15 +66,29 @@ export const fetchAccessToken = (id, password) => {
             })
         });
         return fetch(request).then((res) => {
-            if(res.status === 200){
-                res.json().then((data) => {
-                    localStorage.setItem('user', JSON.stringify({
-                        accessToken: data.accessToken,
-                        data: data.data
-                    }));
-                    dispatch(receiveAccessToken(data));
-                });
+            switch(res.status) {
+                case 200:
+                    res.json().then((data) => {
+                        localStorage.setItem('user', JSON.stringify({
+                            accessToken: data.accessToken,
+                            data: data.data
+                        }));
+                        dispatch(receiveAccessToken(data));
+                    });
+                    break;
+                case 400:
+                    res.text().then((data) => {
+                        alert(EMAIL_NOT_FOUND);
+                        dispatch(failToReceiveAccessToken());
+                    });
+                    break;
+                case 404:
+                    alert(PASSWORD_INCORRECT);
+                    break;
             }
+        }, () => {
+            alert(SERVER_ERR);
+            dispatch(failToReceiveAccessToken());
         });
     };
 };
@@ -170,7 +192,7 @@ export const fetchAddJob = (accessToken, name, body, runAt, targetEmail, callbac
             switch(res.status) {
                 case 200:
                     res.json().then((data) => {
-                        alert("Job " + data.name + " added.");
+                        alert(data.name + " 작업이 추가되었습니다.");
                         dispatch(receiveAddJob());
                         dispatch(fetchJobList(accessToken));
                     });
@@ -198,6 +220,12 @@ const requestDeleteJob = () => {
     };
 };
 
+const failToDeleteJob = () => {
+    return {
+        type: FAIL_TO_DELETE_JOB
+    };
+};
+
 export const fetchDeleteJob = (accessToken, id) => {
     return (dispatch) => {
         dispatch(requestDeleteJob());
@@ -209,9 +237,24 @@ export const fetchDeleteJob = (accessToken, id) => {
             },
         });
         return fetch(request).then((res) => {
-            if(res.status === 200){
-                dispatch(fetchJobList(accessToken));
+            switch(res.status) {
+                case 200:
+                    dispatch(fetchJobList(accessToken));
+                    break;
+                case 400:
+                    res.text().then((data) => {
+                        alert(data);
+                        dispatch(failToDeleteJob());
+                    });
+                    break;
+                case 403:
+                    alert(NEED_LOGIN);
+                    dispatch(failToDeleteJob());
+                    break;
             }
+        }, () => {
+            alert(SERVER_ERR);
+            dispatch(failToDeleteJob());
         });
     };
 };

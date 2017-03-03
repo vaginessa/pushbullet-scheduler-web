@@ -6,6 +6,7 @@
 import {
     REQUEST_ACCESS_TOKEN,
     RECEIVE_ACCESS_TOKEN,
+    FAIL_TO_RECEIVE_ACCESS_TOKEN,
     LOGOUT
 } from '../actions/index.js';
 
@@ -31,6 +32,10 @@ export default (state = {
                 isFetching: false,
                 accessToken: action.accessToken,
                 data: action.info
+            });
+        case FAIL_TO_RECEIVE_ACCESS_TOKEN:
+            return Object.assign({}, state, {
+                isFetching: false
             });
         case LOGOUT:
             return Object.assign({}, state, {
