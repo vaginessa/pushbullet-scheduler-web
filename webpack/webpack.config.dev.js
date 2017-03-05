@@ -13,7 +13,7 @@ module.exports = {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['latest', 'stage-3', 'react']
+                    presets: ['env', 'stage-3', 'react']
                 },
                 include: [
                     path.join(__dirname, '../app/src')
