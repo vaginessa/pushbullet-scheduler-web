@@ -6,7 +6,7 @@ const data = {};
 
 data.THEME = 'teal';
 
-if(process.env === 'PROD'){
+if(process.env.NODE_ENV === 'PROD'){
     data.BASE_URL = '';
 }else{
     data.BASE_URL = 'http://localhost:1234';
