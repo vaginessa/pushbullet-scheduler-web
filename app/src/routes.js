@@ -24,7 +24,7 @@ import { receiveAccessToken } from './actions/index.js';
 
 
 let history;
-if(process.env.NODE_ENV === 'PROD'){
+if(process.env.NODE_ENV === 'production'){
     history = browserHistory;
 }else{
     history = hashHistory;
