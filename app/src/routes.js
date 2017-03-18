@@ -23,12 +23,7 @@ import routers from './containers';
 import { receiveAccessToken } from './actions/index.js';
 
 
-let history;
-if(process.env.NODE_ENV === 'production'){
-    history = browserHistory;
-}else{
-    history = hashHistory;
-}
+const history = hashHistory;
 
 const rootReducer = combineReducers({
     ...reducers,
