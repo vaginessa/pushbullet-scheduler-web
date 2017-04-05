@@ -65,6 +65,7 @@ const App = React.createClass({
                         <IndexRoute component={routers.Home}/>
                         <Route path="list" component={routers.List} onEnter={requireAuth}/>
                         <Route path="login" component={routers.Login} onEnter={requireAnonymous}/>
+                        <Route path="register" component={routers.Register} onEnter={requireAnonymous}/>
                         {/*<Route path="user" component={User}/>*/}
                     </Route>
                 </Router>

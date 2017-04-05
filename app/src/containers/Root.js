@@ -29,7 +29,10 @@ export default connect(bindStore)(React.createClass({
         // Change right side menu depends on login state.
         let rightMenu;
         if(this.props.user.accessToken === null){
-            rightMenu = <Menu.Item onClick={this.routerClick} to="/login" link={true} name="Login"/>;
+            rightMenu = [
+                <Menu.Item onClick={this.routerClick} to="/login" link={true} name="Login"/>,
+                <Menu.Item onClick={this.routerClick} to="/register" link={true} name="Register"/>
+            ];
         }else{
             rightMenu = (
                 <Dropdown item text={this.props.user.data.name}>

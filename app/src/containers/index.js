@@ -7,10 +7,13 @@ import Root from './Root.js';
 import Home from './Home.js';
 import List from './List.js';
 import Login from './Login.js';
+import Register from './Register.js';
+
 
 export default {
     Root,
     Home,
     List,
-    Login
+    Login,
+    Register
 };
