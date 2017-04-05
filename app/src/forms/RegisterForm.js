@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router';
 import { Input, Form, Button, Header } from 'semantic-ui-react';
 
 
@@ -43,6 +44,7 @@ export default reduxForm({
                         Register
                     </Button>
                 </Form.Field>
+                <div className="center-aligned">Or, <Link to="/login">Login</Link></div>
             </Form>
         );
     }
